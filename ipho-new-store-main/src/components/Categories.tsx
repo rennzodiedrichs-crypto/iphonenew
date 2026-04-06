@@ -6,6 +6,7 @@ const categories = [
     name: "iPhones",
     desc: "Novos e seminovos com garantia",
     icon: Smartphone,
+    href: "#celulares",
     span: "md:col-span-2",
     bgArt: (
       <svg className="absolute top-4 right-4 opacity-[0.06]" width="180" height="280" viewBox="0 0 180 280" fill="none">
@@ -18,6 +19,7 @@ const categories = [
     name: "JBL Audio",
     desc: "Caixas de som Bluetooth premium",
     icon: Volume2,
+    href: "#jbl",
     bgArt: (
       <svg className="absolute top-1/2 right-6 -translate-y-1/2 opacity-[0.07]" width="160" height="160" viewBox="0 0 160 160" fill="none">
         <circle cx="80" cy="80" r="30" stroke="currentColor" strokeWidth="1" />
@@ -30,6 +32,7 @@ const categories = [
     name: "Xiaomi",
     desc: "Linha completa, custo-benefício",
     icon: Smartphone,
+    href: "#android",
     bgArt: (
       <svg className="absolute top-4 right-4 opacity-[0.06]" width="140" height="140" viewBox="0 0 140 140" fill="none">
         <polygon points="70,10 130,40 130,100 70,130 10,100 10,40" stroke="currentColor" strokeWidth="0.8" fill="none" />
@@ -41,6 +44,7 @@ const categories = [
     name: "Realme",
     desc: "Tecnologia acessível e moderna",
     icon: Smartphone,
+    href: "#android",
     bgArt: (
       <svg className="absolute top-4 right-4 opacity-[0.07]" width="120" height="120" viewBox="0 0 120 120" fill="none">
         <line x1="0" y1="0" x2="120" y2="120" stroke="currentColor" strokeWidth="0.5" />
@@ -54,6 +58,7 @@ const categories = [
     name: "Assistência",
     desc: "Telas, baterias, software",
     icon: Wrench,
+    href: "#assistencia",
     bgArt: (
       <svg className="absolute top-1/2 right-6 -translate-y-1/2 opacity-[0.07]" width="100" height="100" viewBox="0 0 100 100" fill="none">
         <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" strokeWidth="1" />
@@ -65,6 +70,7 @@ const categories = [
     name: "Acessórios & Mais",
     desc: "Carregadores, capas, películas, Starlink",
     icon: Package,
+    href: "#acessorios",
     span: "md:col-span-2",
     bgArt: (
       <svg className="absolute top-4 right-4 opacity-[0.06]" width="160" height="120" viewBox="0 0 160 120" fill="none">
@@ -105,7 +111,8 @@ const Categories = () => {
 };
 
 const CategoryCard = ({ cat, delay, tall }: { cat: typeof categories[0]; delay: number; tall?: boolean }) => (
-  <div
+  <a
+    href={cat.href}
     className={`group relative overflow-hidden rounded-lg border text-foreground transition-all duration-[350ms] cursor-pointer animate-fade-slide-up ${cat.span || ""}`}
     style={{
       background: "linear-gradient(160deg, hsl(var(--surface)), hsl(var(--surface-2)))",
@@ -113,6 +120,8 @@ const CategoryCard = ({ cat, delay, tall }: { cat: typeof categories[0]; delay: 
       minHeight: tall ? 320 : 240,
       animationDelay: `${delay}ms`,
       transition: "border-color 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1)",
+      display: "block",
+      textDecoration: "none",
     }}
     onMouseEnter={(e) => {
       e.currentTarget.style.borderColor = "hsl(var(--border-hover))";
@@ -140,7 +149,7 @@ const CategoryCard = ({ cat, delay, tall }: { cat: typeof categories[0]; delay: 
         className="text-primary mt-3 translate-x-0 group-hover:translate-x-1 transition-transform duration-300 opacity-0 group-hover:opacity-100"
       />
     </div>
-  </div>
+  </a>
 );
 
 export default Categories;

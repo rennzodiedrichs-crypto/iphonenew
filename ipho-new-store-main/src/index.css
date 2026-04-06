@@ -124,7 +124,10 @@
   z-index: 1;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  font-size: 17px;
+}
 
 /* Hide scrollbar for carousels */
 .scrollbar-hide::-webkit-scrollbar { display: none; }

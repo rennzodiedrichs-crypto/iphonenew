@@ -29,14 +29,6 @@ const Hero = () => {
         <div className="flex flex-col lg:flex-row items-start lg:items-center w-full gap-12 pt-24 lg:pt-0">
           {/* Left column */}
           <div className="lg:w-[60%]">
-            {/* Eyebrow */}
-            <div
-              className="inline-flex items-center font-dm-mono text-[0.65rem] uppercase tracking-[0.1em] mb-8 px-[14px] py-[6px] rounded-full border"
-              style={{ ...anim(100), color: "hsl(var(--gold))", borderColor: "hsl(var(--border))" }}
-            >
-              Palmas · Tocantins · Desde 2021
-            </div>
-
             {/* Headlines */}
             <h1
               className="font-cormorant font-bold text-[2.8rem] md:text-[5rem] lg:text-[7.5vw] leading-[0.92] tracking-[-0.02em] text-foreground"

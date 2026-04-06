@@ -23,7 +23,7 @@ const Accessories = () => {
   const ref = useScrollReveal();
 
   return (
-    <section ref={ref} className="py-24" style={{ background: "hsl(var(--surface))" }}>
+    <section id="acessorios" ref={ref} className="py-24" style={{ background: "hsl(var(--surface))" }}>
       <div className="container mx-auto px-5 lg:px-8">
         <div className="flex items-center justify-between mb-8">
           <h2 className="font-outfit font-semibold text-foreground text-[1.8rem] md:text-[2.2rem]">
