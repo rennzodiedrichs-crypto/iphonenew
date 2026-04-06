@@ -44,7 +44,7 @@ const JBLSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left — Editorial */}
           <div>
-            <p className="font-dm-mono text-[0.65rem] uppercase tracking-[0.1em] text-primary mb-4">Som Premium</p>
+            <p className="font-dm-mono text-[0.75rem] uppercase tracking-[0.1em] text-primary mb-4">Som Premium</p>
             <h2 className="font-cormorant font-bold text-foreground text-[2.5rem] md:text-[4rem] leading-[1.0] tracking-[-0.02em] mb-6">
               O som que<br />
               você <span className="text-primary">sente</span><br />
@@ -67,7 +67,7 @@ const JBLSection = () => {
               href="https://wa.me/5563930002112"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex font-outfit font-semibold text-sm px-9 py-[15px] rounded-sm bg-primary text-primary-foreground transition-all duration-300 hover:brightness-110 hover:scale-[1.02]"
+              className="inline-flex font-outfit font-semibold text-[0.95rem] px-9 py-[15px] rounded-sm bg-primary text-primary-foreground transition-all duration-300 hover:brightness-110 hover:scale-[1.02]"
             >
               Ver caixas JBL
             </a>
@@ -94,13 +94,13 @@ const JBLSection = () => {
               >
                 <div className="flex items-center justify-between gap-6">
                   <div className="relative z-10 flex-1">
-                    <h3 className="font-outfit font-semibold text-foreground text-[1.1rem] mb-1">{p.name}</h3>
-                    <p className="font-dm-mono text-[0.7rem]" style={{ color: "hsl(var(--white-40))" }}>{p.specs}</p>
+                    <h3 className="font-outfit font-semibold text-foreground text-[1.15rem] mb-1">{p.name}</h3>
+                    <p className="font-dm-mono text-[0.78rem]" style={{ color: "hsl(var(--white-40))" }}>{p.specs}</p>
                     <a
                       href="https://wa.me/5563930002112"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-outfit text-[0.85rem] text-primary mt-3 inline-block hover:text-gold transition-colors"
+                      className="font-outfit text-[0.95rem] text-primary mt-3 inline-block hover:text-gold transition-colors"
                     >
                       Ver mais →
                     </a>
@@ -110,6 +110,8 @@ const JBLSection = () => {
                     <img 
                       src={`/jbl-${p.name.toLowerCase().replace(/\s+/g, '-')}.png`}
                       alt={p.name}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-contain relative z-10 drop-shadow-lg scale-125 transition-transform duration-500 group-hover:scale-150"
                       onError={(e) => {
                         e.currentTarget.style.display = 'none';

@@ -43,7 +43,7 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-5 lg:px-8 flex items-center min-h-[100svh]">
-        <div className="flex flex-col lg:flex-row items-start lg:items-center w-full gap-12 pt-24 lg:pt-0">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center w-full gap-12 pt-36 lg:pt-20">
           {/* Left column */}
           <div className="lg:w-[60%]">
             {/* Headlines */}
@@ -84,7 +84,7 @@ const Hero = () => {
             <div className="flex flex-wrap gap-4 mt-10" style={anim(1000)}>
               <a
                 href="#celulares"
-                className="font-outfit font-semibold text-sm px-9 py-[15px] rounded-sm bg-primary text-primary-foreground transition-all duration-300 hover:brightness-110 hover:scale-[1.02]"
+                className="font-outfit font-semibold text-[0.95rem] px-9 py-[15px] rounded-sm bg-primary text-primary-foreground transition-all duration-300 hover:brightness-110 hover:scale-[1.02]"
               >
                 Ver Produtos
               </a>
@@ -92,7 +92,7 @@ const Hero = () => {
                 href="https://wa.me/5563930002112"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-outfit font-semibold text-sm px-9 py-[15px] rounded-sm border text-foreground transition-all duration-300"
+                className="font-outfit font-semibold text-[0.95rem] px-9 py-[15px] rounded-sm border text-foreground transition-all duration-300"
                 style={{ borderColor: "hsl(var(--white-10))" }}
                 onMouseEnter={(e) => { e.currentTarget.style.borderColor = "hsl(var(--gold))"; e.currentTarget.style.color = "hsl(var(--gold))"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.borderColor = "hsl(var(--white-10))"; e.currentTarget.style.color = "hsl(var(--foreground))"; }}
@@ -112,9 +112,11 @@ const Hero = () => {
                 <img 
                   src="/hero-iphone.png" 
                   alt="iPhone 16 Pro Max"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                   className="max-w-full max-h-full object-contain drop-shadow-[0_35px_60px_rgba(0,0,0,0.6)]"
                   onError={(e) => {
-                    // Fallback to the geometric composition if image doesn't exist yet
                     e.currentTarget.style.display = 'none';
                     if (e.currentTarget.nextElementSibling) {
                       (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'block';

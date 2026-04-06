@@ -17,9 +17,9 @@ const Footer = () => (
           <a href="#inicio" className="inline-flex items-center mb-4">
             <span className="font-outfit font-semibold text-[1.3rem] text-foreground">iPHO</span>
             <span className="font-outfit font-bold italic text-[1.3rem] text-primary">NEW</span>
-            <span className="font-outfit font-light text-[0.85rem] ml-[3px] tracking-[0.08em] text-muted-foreground">STORE</span>
+            <span className="font-outfit font-light text-[1rem] ml-[3px] tracking-[0.08em] text-muted-foreground">STORE</span>
           </a>
-          <p className="font-outfit font-light text-sm" style={{ color: "hsl(var(--white-40))" }}>
+          <p className="font-outfit font-light text-[0.9rem]" style={{ color: "hsl(var(--white-40))" }}>
             Qualidade, Garantia e Suporte Especializado em Palmas.
           </p>
         </div>
@@ -30,7 +30,7 @@ const Footer = () => (
             <a
               key={l}
               href={`#${l.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}
-              className="font-outfit text-sm transition-colors duration-300"
+              className="font-outfit text-[0.95rem] transition-colors duration-300"
               style={{ color: "hsl(var(--white-40))" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(var(--gold))")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "hsl(var(--white-40))")}
@@ -46,21 +46,21 @@ const Footer = () => (
             href="https://wa.me/5563930002112"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex font-outfit font-semibold text-sm px-5 py-2 rounded-sm border transition-all duration-300 mb-4"
+            className="inline-flex font-outfit font-semibold text-[0.9rem] px-5 py-2 rounded-sm border transition-all duration-300 mb-4"
             style={{ borderColor: "hsl(var(--gold))", color: "hsl(var(--gold))" }}
             onMouseEnter={(e) => { e.currentTarget.style.background = "hsl(var(--gold))"; e.currentTarget.style.color = "hsl(var(--primary-foreground))"; }}
             onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "hsl(var(--gold))"; }}
           >
             WhatsApp
           </a>
-          <p className="font-dm-mono text-[0.7rem]" style={{ color: "hsl(var(--white-40))" }}>
+          <p className="font-dm-mono text-[0.8rem]" style={{ color: "hsl(var(--white-40))" }}>
             Seg–Sex 9h–18h · Sáb 9h–13h
           </p>
         </div>
       </div>
 
       <div className="border-t pt-6" style={{ borderColor: "hsl(var(--border))" }}>
-        <p className="font-dm-mono text-[0.65rem] text-center" style={{ color: "hsl(var(--white-10))" }}>
+        <p className="font-dm-mono text-[0.75rem] text-center" style={{ color: "hsl(var(--white-10))" }}>
           © 2025 iPhoneNew Store · Palmas, Tocantins · Todos os direitos reservados.
         </p>
       </div>

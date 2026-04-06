@@ -34,7 +34,7 @@ const QuickViewModal = ({ product, isOpen, onClose }: QuickViewModalProps) => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[600px] bg-void border-border text-foreground overflow-hidden">
         <DialogHeader>
-          <DialogTitle className="font-cormorant text-3xl font-bold">
+          <DialogTitle className="font-cormorant text-4xl font-bold">
             {product.name}
           </DialogTitle>
           <div className="flex gap-2 mt-2">
@@ -68,10 +68,10 @@ const QuickViewModal = ({ product, isOpen, onClose }: QuickViewModalProps) => {
 
           <div className="flex flex-col justify-between">
             <div>
-              <h4 className="font-outfit font-semibold text-lg mb-4 text-primary">Especificações</h4>
+              <h4 className="font-outfit font-semibold text-xl mb-4 text-primary">Especificações</h4>
               <ul className="space-y-3">
                 {product.specs.split(" · ").map((spec, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-white/70">
+                  <li key={i} className="flex items-center gap-3 text-base text-white/70">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold/50" />
                     {spec}
                   </li>
@@ -79,21 +79,21 @@ const QuickViewModal = ({ product, isOpen, onClose }: QuickViewModalProps) => {
               </ul>
               
               <div className="mt-8 p-4 rounded-lg bg-surface border border-border">
-                <p className="text-xs text-white/40 uppercase tracking-widest mb-1">Status</p>
-                <p className="text-sm font-medium">Disponível para pronta entrega em Palmas</p>
+                <p className="text-sm text-white/40 uppercase tracking-widest mb-1">Status</p>
+                <p className="text-base font-medium">Disponível para pronta entrega em Palmas</p>
               </div>
             </div>
 
             <div className="mt-8 flex flex-col gap-3">
               <Button 
-                className="w-full bg-primary text-black hover:bg-gold-bright transition-all"
+                className="w-full bg-primary text-black hover:bg-gold-bright transition-all text-base py-5"
                 onClick={() => window.open(`https://wa.me/5563930002112?text=${waText}`, '_blank')}
               >
                 Tenho Interesse
               </Button>
               <Button 
                 variant="outline" 
-                className="w-full border-white/10 text-white/60 hover:text-white"
+                className="w-full border-white/10 text-white/60 hover:text-white text-base py-5"
                 onClick={onClose}
               >
                 Voltar

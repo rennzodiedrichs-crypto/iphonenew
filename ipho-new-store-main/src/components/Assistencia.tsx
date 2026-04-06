@@ -20,7 +20,7 @@ const Assistencia = () => {
       <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: "hsl(var(--gold) / 0.15)" }} />
 
       <div className="container mx-auto px-5 lg:px-8">
-        <p className="font-dm-mono text-[0.65rem] uppercase tracking-[0.1em] text-primary mb-3">Assistência Técnica</p>
+        <p className="font-dm-mono text-[0.75rem] uppercase tracking-[0.1em] text-primary mb-3">Assistência Técnica</p>
         <h2 className="font-cormorant font-bold text-foreground text-[2.2rem] md:text-[3.2rem] tracking-[-0.02em] mb-14">
           Seu dispositivo em<br />boas mãos.
         </h2>
@@ -42,8 +42,8 @@ const Assistencia = () => {
               >
                 <s.icon size={20} className="text-primary" />
               </div>
-              <h3 className="font-outfit font-semibold text-foreground text-[1.05rem] mb-2">{s.title}</h3>
-              <p className="font-outfit font-light text-[0.85rem]" style={{ color: "hsl(var(--white-40))" }}>{s.desc}</p>
+              <h3 className="font-outfit font-semibold text-foreground text-[1.1rem] mb-2">{s.title}</h3>
+              <p className="font-outfit font-light text-[0.9rem]" style={{ color: "hsl(var(--white-40))" }}>{s.desc}</p>
             </div>
           ))}
         </div>
@@ -53,7 +53,7 @@ const Assistencia = () => {
             href="https://wa.me/5563930002112"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex font-outfit font-semibold text-sm px-9 py-[15px] rounded-sm bg-primary text-primary-foreground transition-all duration-300 hover:brightness-110 hover:scale-[1.02]"
+            className="inline-flex font-outfit font-semibold text-[0.95rem] px-9 py-[15px] rounded-sm bg-primary text-primary-foreground transition-all duration-300 hover:brightness-110 hover:scale-[1.02]"
           >
             Agendar Atendimento
           </a>

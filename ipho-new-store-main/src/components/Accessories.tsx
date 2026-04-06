@@ -33,7 +33,7 @@ const Accessories = () => {
             href="https://wa.me/5563930002112"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-outfit text-sm text-primary hidden md:inline"
+            className="font-outfit text-base text-primary hidden md:inline"
           >
             Ver todos →
           </a>
@@ -53,7 +53,7 @@ const Accessories = () => {
               onMouseLeave={(e) => { e.currentTarget.style.borderColor = "hsl(var(--border))"; }}
             >
               <p.icon size={16} className="text-primary" />
-              <span className="font-outfit font-medium text-sm text-foreground">{p.name}</span>
+              <span className="font-outfit font-medium text-base text-foreground">{p.name}</span>
             </div>
           ))}
         </div>
@@ -79,13 +79,13 @@ const Accessories = () => {
                 e.currentTarget.style.boxShadow = "none";
               }}
             >
-              <h3 className="font-outfit font-semibold text-foreground text-[1rem] mb-2">{a.name}</h3>
-              <p className="font-dm-mono text-[0.7rem]" style={{ color: "hsl(var(--white-40))" }}>{a.specs}</p>
+              <h3 className="font-outfit font-semibold text-foreground text-[1.15rem] mb-2">{a.name}</h3>
+              <p className="font-dm-mono text-[0.85rem]" style={{ color: "hsl(var(--white-40))" }}>{a.specs}</p>
               <a
                 href="https://wa.me/5563930002112"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-outfit text-[0.8rem] text-primary mt-4 inline-block"
+                className="font-outfit text-[0.95rem] text-primary mt-4 inline-block"
               >
                 Ver detalhes →
               </a>

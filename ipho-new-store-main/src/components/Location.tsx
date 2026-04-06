@@ -10,12 +10,12 @@ const Location = () => {
         <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] gap-6">
           {/* Info card */}
           <div className="rounded-lg border p-10" style={{ background: "hsl(var(--surface))", borderColor: "hsl(var(--border))" }}>
-            <p className="font-dm-mono text-[0.65rem] uppercase tracking-[0.1em] text-primary mb-6">Onde Estamos</p>
+            <p className="font-dm-mono text-[0.75rem] uppercase tracking-[0.1em] text-primary mb-6">Onde Estamos</p>
 
             <div className="space-y-6">
               <div className="flex gap-4">
                 <MapPin size={20} className="text-primary mt-1 flex-shrink-0" />
-                <p className="font-outfit font-medium text-sm text-foreground">
+                <p className="font-outfit font-medium text-[0.95rem] text-foreground">
                   Galeria Office, ACSE 1, Rua de Pedestre, SE 03, Lote 23, Sala 3 — Plano Diretor Sul, Palmas / TO
                 </p>
               </div>
@@ -28,7 +28,7 @@ const Location = () => {
                   href="https://wa.me/5563930002112"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-outfit font-medium text-sm text-primary hover:underline"
+                  className="font-outfit font-medium text-[0.95rem] text-primary hover:underline"
                 >
                   +55 63 9300-2112
                 </a>
@@ -36,7 +36,7 @@ const Location = () => {
 
               <div className="flex gap-4">
                 <Clock size={20} className="text-primary mt-1 flex-shrink-0" />
-                <div className="font-outfit text-sm" style={{ color: "hsl(var(--white-40))" }}>
+                <div className="font-outfit text-[0.9rem]" style={{ color: "hsl(var(--white-40))" }}>
                   <p>Seg–Sex: 9h às 18h</p>
                   <p>Sábado: 9h às 13h</p>
                   <p>Domingo: Fechado</p>
@@ -48,7 +48,7 @@ const Location = () => {
               href="https://maps.google.com/?q=Galeria+Office,+ACSE+1,+SE+03,+Lote+23,+Sala+3,+Plano+Diretor+Sul,+Palmas,+Tocantins"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex font-outfit text-sm mt-8 px-6 py-3 rounded-sm border transition-all duration-300"
+              className="inline-flex font-outfit text-[0.95rem] mt-8 px-6 py-3 rounded-sm border transition-all duration-300"
               style={{ borderColor: "hsl(var(--border))", color: "hsl(var(--gold))" }}
               onMouseEnter={(e) => { e.currentTarget.style.borderColor = "hsl(var(--gold))"; }}
               onMouseLeave={(e) => { e.currentTarget.style.borderColor = "hsl(var(--border))"; }}

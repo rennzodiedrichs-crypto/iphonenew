@@ -11,15 +11,65 @@ interface Product {
   image?: string;
 }
 
-const iphones = [
-  { name: "iPhone 16 Pro Max", badge: "NOVO", specs: "256GB · Titânio Deserto · Dynamic Island", model: "16PM", highlight: "🔥 Mais Vendido" },
-  { name: "iPhone 16 Pro", badge: "NOVO", specs: "128GB · Titânio Natural · Camera Control", model: "16P" },
-  { name: "iPhone 16", badge: "NOVO", specs: "128GB · Preto · Chip A18", model: "16" },
-  { name: "iPhone 15 Pro", badge: "SEMINOVO", specs: "256GB · Titânio Azul · USB-C", model: "15P" },
-  { name: "iPhone 15", badge: "SEMINOVO", specs: "128GB · Rosa · Dynamic Island", model: "15", highlight: "🔥 Mais Vendido" },
-  { name: "iPhone 14", badge: "SEMINOVO", specs: "128GB · Meia-noite · Chip A15", model: "14" },
-  { name: "iPhone 13", badge: "SEMINOVO", specs: "128GB · Estelar · Bateria 100%", model: "13" },
-  { name: "iPhone 12", badge: "SEMINOVO", specs: "64GB · Branco · Excelente estado", model: "12" },
+const iphones: Product[] = [
+  { 
+    name: "iPhone 16 Pro Max", 
+    badge: "NOVO", 
+    specs: "256GB · Titânio Deserto · Chip A18 Pro", 
+    model: "16PM", 
+    highlight: "🔥 Mais Vendido",
+    image: "/iphone16promax.png"
+  },
+  { 
+    name: "iPhone 16 Pro", 
+    badge: "NOVO", 
+    specs: "128GB · Titânio Natural · Chip A18 Pro", 
+    model: "16P",
+    image: "/16pro.png"
+  },
+  { 
+    name: "iPhone 16", 
+    badge: "NOVO", 
+    specs: "128GB · Ultramarino · Chip A18", 
+    model: "16",
+    image: "/16.png"
+  },
+  { 
+    name: "iPhone 15 Pro", 
+    badge: "SEMINOVO", 
+    specs: "128GB · Titânio Azul · Chip A17 Pro", 
+    model: "15P",
+    image: "/iphone15pro.png"
+  },
+  { 
+    name: "iPhone 15", 
+    badge: "SEMINOVO", 
+    specs: "128GB · Rosa · Chip A16 Bionic", 
+    model: "15", 
+    highlight: "🔥 Mais Vendido",
+    image: "/iphone15.png"
+  },
+  { 
+    name: "iPhone 14", 
+    badge: "SEMINOVO", 
+    specs: "128GB · Meia-noite · Chip A15 Bionic", 
+    model: "14",
+    image: "/iphone14.png"
+  },
+  { 
+    name: "iPhone 13", 
+    badge: "SEMINOVO", 
+    specs: "128GB · Estelar · Bateria de Longa Duração", 
+    model: "13",
+    image: "/iphone13estelar.png"
+  },
+  { 
+    name: "iPhone 12", 
+    badge: "SEMINOVO", 
+    specs: "64GB · Branco · Tela Super Retina XDR", 
+    model: "12",
+    image: "/iphone12.png"
+  },
 ];
 
 const IPhoneShowcase = () => {
@@ -37,7 +87,7 @@ const IPhoneShowcase = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full blur-[120px]" style={{ background: "hsl(var(--gold) / 0.06)" }} />
 
       <div className="container mx-auto px-5 lg:px-8 relative z-10">
-        <p className="font-dm-mono text-[0.65rem] uppercase tracking-[0.1em] text-primary mb-3">Celulares Apple</p>
+        <p className="font-dm-mono text-[0.75rem] uppercase tracking-[0.1em] text-primary mb-3">Celulares Apple</p>
         <h2 className="font-cormorant font-bold text-foreground text-[2.2rem] md:text-[3.5rem] tracking-[-0.02em] mb-2">
           iPhones Novos e Seminovos
         </h2>
@@ -76,20 +126,31 @@ const IPhoneShowcase = () => {
                   </span>
                 )}
 
-                <div className="relative h-[50%] flex items-center justify-center overflow-hidden">
-                  <span className="font-cormorant text-[5rem] font-bold absolute text-foreground opacity-[0.04] select-none">
+                <div className="relative h-[50%] flex items-center justify-center overflow-hidden pt-8">
+                  <span className="font-cormorant text-[6rem] font-bold absolute text-foreground opacity-[0.04] select-none pointer-events-none">
                     {p.model}
                   </span>
-                  <svg width="100" height="200" viewBox="0 0 100 200" fill="none" className="relative z-10" style={{ opacity: 0.07 }}>
-                    <rect x="5" y="5" width="90" height="190" rx="16" stroke="currentColor" strokeWidth="1.2" className="text-foreground" />
-                    <rect x="14" y="28" width="72" height="148" rx="3" stroke="currentColor" strokeWidth="0.5" className="text-foreground" />
-                  </svg>
+                  
+                  {p.image ? (
+                    <img 
+                      src={p.image} 
+                      alt={p.name} 
+                      loading="lazy"
+                      decoding="async"
+                      className="h-[85%] w-auto object-contain relative z-10 transition-transform duration-500 group-hover:scale-110"
+                    />
+                  ) : (
+                    <svg width="100" height="150" viewBox="0 0 100 200" fill="none" className="relative z-10" style={{ opacity: 0.1 }}>
+                      <rect x="5" y="5" width="90" height="190" rx="16" stroke="currentColor" strokeWidth="1.2" className="text-foreground" />
+                    </svg>
+                  )}
+                  
                   <div className="absolute w-24 h-24 rounded-full blur-[60px]" style={{ background: "hsl(var(--gold) / 0.12)" }} />
                 </div>
 
-                <div className="p-6">
+                <div className="p-6 pt-2">
                   <span
-                    className="font-dm-mono text-[0.65rem] uppercase tracking-[0.1em] px-3 py-1 rounded-full border inline-block mb-3"
+                    className="font-dm-mono text-[0.75rem] uppercase tracking-[0.1em] px-3 py-1 rounded-full border inline-block mb-3"
                     style={{
                       borderColor: p.badge === "NOVO" ? "hsl(var(--gold) / 0.3)" : "hsl(var(--white-10))",
                       color: p.badge === "NOVO" ? "hsl(var(--gold))" : "hsl(var(--white-40))",
@@ -97,14 +158,14 @@ const IPhoneShowcase = () => {
                   >
                     {p.badge}
                   </span>
-                  <h3 className="font-outfit font-semibold text-[1.15rem] text-foreground mb-1">{p.name}</h3>
-                  <p className="font-dm-mono text-[0.7rem] mb-4" style={{ color: "hsl(var(--white-40))" }}>{p.specs}</p>
+                  <h3 className="font-outfit font-semibold text-[1.2rem] text-foreground mb-1">{p.name}</h3>
+                  <p className="font-dm-mono text-[0.75rem] mb-4" style={{ color: "hsl(var(--white-40))" }}>{p.specs}</p>
                   <div className="flex items-center justify-between mt-4">
                     <a
                       href={`https://wa.me/5563930002112?text=${waText}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-outfit text-[0.85rem] text-primary relative inline-block group/link"
+                      className="font-outfit text-[0.9rem] font-medium text-primary relative inline-block group/link"
                     >
                       Ver detalhes →
                       <span className="absolute bottom-0 left-0 w-full h-px bg-primary origin-left scale-x-0 group-hover/link:scale-x-100 transition-transform duration-300" />
@@ -112,7 +173,7 @@ const IPhoneShowcase = () => {
                     
                     <button
                       onClick={() => openQuickView(p)}
-                      className="text-[0.7rem] uppercase tracking-widest text-white/40 hover:text-gold transition-colors"
+                      className="text-[0.85rem] uppercase tracking-wider font-medium px-3 py-1.5 rounded border border-white/10 text-white/50 hover:text-gold hover:border-gold/30 transition-all duration-300"
                     >
                       Quick View
                     </button>
@@ -122,6 +183,7 @@ const IPhoneShowcase = () => {
             );
           })}
         </div>
+
 
         <QuickViewModal 
           product={selectedProduct} 
@@ -134,7 +196,7 @@ const IPhoneShowcase = () => {
             href="https://wa.me/5563930002112"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex font-outfit text-sm px-10 py-[14px] rounded-sm border transition-all duration-300"
+            className="inline-flex font-outfit text-[0.9rem] px-10 py-[14px] rounded-sm border transition-all duration-300"
             style={{ borderColor: "hsl(var(--border))", color: "hsl(var(--white-40))" }}
             onMouseEnter={(e) => { e.currentTarget.style.borderColor = "hsl(var(--gold))"; e.currentTarget.style.color = "hsl(var(--gold))"; }}
             onMouseLeave={(e) => { e.currentTarget.style.borderColor = "hsl(var(--border))"; e.currentTarget.style.color = "hsl(var(--white-40))"; }}

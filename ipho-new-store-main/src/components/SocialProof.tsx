@@ -38,7 +38,7 @@ const testimonials = [
 const counters = [
   { value: 500, suffix: "+", label: "Clientes Atendidos" },
   { value: 100, suffix: "%", label: "Garantia nos Produtos" },
-  { value: 5, suffix: "★", label: "Avaliação no Google" },
+  { value: 4.7, suffix: "★", label: "Avaliação no Google" },
   { value: 3, suffix: "", label: "Anos em Palmas" },
 ];
 
@@ -53,6 +53,11 @@ const AnimatedCounter = ({ target, suffix, label }: { target: number; suffix: st
     const obs = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting && !started.current) {
         started.current = true;
+        // For decimal values like 4.7, animate to floor and show static
+        if (!Number.isInteger(target)) {
+          setCount(target);
+          return;
+        }
         const duration = 1500;
         const start = performance.now();
         const step = (now: number) => {
@@ -71,9 +76,9 @@ const AnimatedCounter = ({ target, suffix, label }: { target: number; suffix: st
   return (
     <div ref={ref} className="text-center px-6">
       <p className="font-cormorant font-bold text-[2.5rem] md:text-[3rem] text-primary leading-none">
-        {count}{suffix}
+        {Number.isInteger(target) ? count : target}{suffix}
       </p>
-      <p className="font-outfit font-light text-[0.8rem] mt-2 opacity-40 uppercase tracking-widest">
+      <p className="font-outfit font-light text-[0.9rem] mt-2 opacity-40 uppercase tracking-widest">
         {label}
       </p>
     </div>
@@ -107,10 +112,10 @@ const SocialProof = () => (
                   <div className="bg-surface-2 border border-border rounded-xl p-8 h-full relative overflow-hidden group hover:border-gold/30 transition-colors duration-500">
                     <div className="flex gap-1 mb-4">
                       {[...Array(t.rating).keys()].map((s) => (
-                        <Star key={s} size={14} className="fill-gold text-gold" />
+                        <Star key={s} size={16} className="fill-gold text-gold" />
                       ))}
                     </div>
-                    <p className="font-outfit font-light text-[1.05rem] leading-relaxed text-white/80 mb-6 italic">
+                    <p className="font-outfit font-light text-[1.1rem] leading-relaxed text-white/80 mb-6 italic">
                       "{t.text}"
                     </p>
                     <div className="flex items-center gap-4">
@@ -118,8 +123,8 @@ const SocialProof = () => (
                         {t.name.charAt(0)}
                       </div>
                       <div>
-                        <h4 className="font-outfit font-semibold text-sm text-foreground">{t.name}</h4>
-                        <p className="text-[0.7rem] text-white/30 uppercase tracking-wider">{t.date}</p>
+                        <h4 className="font-outfit font-semibold text-base text-foreground">{t.name}</h4>
+                        <p className="text-[0.8rem] text-white/30 uppercase tracking-wider">{t.date}</p>
                       </div>
                     </div>
                   </div>
