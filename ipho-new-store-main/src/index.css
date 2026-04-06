@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Outfit:wght@300;400;500;600;700&family=DM+Mono:wght@400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --void: 0 0% 2.7%;
+    --bg: 0 0% 4.7%;
+    --surface: 0 0% 6.7%;
+    --surface-2: 0 0% 9%;
+    --surface-3: 0 0% 11.8%;
+
+    --gold: 40 100% 48%;
+    --gold-bright: 40 100% 69%;
+    --gold-muted: 36 100% 37%;
+    --gold-glow: 40 100% 48% / 0.15;
+    --gold-glow-2: 40 100% 48% / 0.30;
+
+    --white: 0 0% 100%;
+    --white-70: 0 0% 100% / 0.70;
+    --white-40: 0 0% 100% / 0.40;
+    --white-10: 0 0% 100% / 0.10;
+    --white-05: 0 0% 100% / 0.05;
+
+    --border: 40 100% 48% / 0.14;
+    --border-hover: 40 100% 48% / 0.45;
+
+    --radius: 12px;
+    --radius-sm: 6px;
+    --radius-lg: 20px;
+    --radius-xl: 32px;
+
+    --background: 0 0% 4.7%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 6.7%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 6.7%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 40 100% 48%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 9%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 9%;
+    --muted-foreground: 0 0% 100% / 0.40;
+    --accent: 40 100% 48%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 40 100% 48% / 0.14;
+    --input: 0 0% 100% / 0.08;
+    --ring: 40 100% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+  }
+}
+
+/* Font utility classes */
+.font-cormorant { font-family: 'Cormorant Garamond', serif; }
+.font-outfit { font-family: 'Outfit', sans-serif; }
+.font-dm-mono { font-family: 'DM Mono', monospace; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: hsl(var(--surface)); }
+::-webkit-scrollbar-thumb { background: hsl(var(--gold-muted)); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--gold)); }
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(-10px); }
+  50% { transform: translateY(10px); }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+@keyframes slideDown {
+  from { transform: translateY(-10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes drawLine {
+  from { width: 0; }
+  to { width: 80px; }
+}
+@keyframes underlineSlide {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.animate-float { animation: float 7s ease-in-out infinite; }
+.animate-pulse-ring { animation: pulse-ring 2.2s ease-out infinite; }
+.animate-slide-down { animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+.animate-fade-slide-up { animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+.animate-draw-line { animation: drawLine 0.6s ease-out forwards; width: 0; }
+
+/* Noise texture overlay */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+}
+
+html { scroll-behavior: smooth; }
+
+/* Hide scrollbar for carousels */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
