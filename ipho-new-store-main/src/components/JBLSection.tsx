@@ -1,3 +1,5 @@
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const jblProducts = [
@@ -13,10 +15,28 @@ const features = [
 ];
 
 const JBLSection = () => {
-  const ref = useScrollReveal();
+  const scrollRef = useScrollReveal();
+  const containerRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 0.95]);
 
   return (
-    <section id="jbl" ref={ref} className="py-24 relative overflow-hidden" style={{ background: "hsl(var(--surface))" }}>
+    <section 
+      id="jbl" 
+      ref={containerRef} 
+      className="py-24 relative overflow-hidden" 
+      style={{ background: "hsl(var(--surface))" }}
+    >
+      <div 
+        ref={scrollRef} 
+        className="absolute inset-0 pointer-events-none" 
+      />
       {/* Central glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[150px]" style={{ background: "hsl(var(--gold) / 0.06)" }} />
 
@@ -53,17 +73,15 @@ const JBLSection = () => {
             </a>
           </div>
 
-          {/* Right — Products */}
           <div className="space-y-4">
             {jblProducts.map((p, i) => (
-              <div
+              <motion.div
                 key={p.name}
-                className="group relative rounded-md border p-6 overflow-hidden transition-all duration-300 animate-fade-slide-up"
+                className="group relative rounded-md border p-6 overflow-hidden transition-all duration-300"
                 style={{
                   background: "hsl(var(--surface-2))",
                   borderColor: "hsl(var(--border))",
-                  animationDelay: `${i * 100}ms`,
-                  transform: i === 1 ? "translateX(20px)" : i === 2 ? "translateX(-10px)" : "none",
+                  y: i % 2 === 0 ? y : 0, // Alternating parallax
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = "hsl(var(--border-hover))";
@@ -74,26 +92,40 @@ const JBLSection = () => {
                   e.currentTarget.style.boxShadow = "none";
                 }}
               >
-                {/* Sound wave bg art */}
-                <svg className="absolute top-1/2 right-4 -translate-y-1/2 opacity-[0.08] text-primary" width="120" height="120" viewBox="0 0 120 120" fill="none">
-                  <circle cx="60" cy="60" r="20" stroke="currentColor" strokeWidth="0.8" />
-                  <circle cx="60" cy="60" r="36" stroke="currentColor" strokeWidth="0.5" />
-                  <circle cx="60" cy="60" r="52" stroke="currentColor" strokeWidth="0.3" />
-                </svg>
+                <div className="flex items-center justify-between gap-6">
+                  <div className="relative z-10 flex-1">
+                    <h3 className="font-outfit font-semibold text-foreground text-[1.1rem] mb-1">{p.name}</h3>
+                    <p className="font-dm-mono text-[0.7rem]" style={{ color: "hsl(var(--white-40))" }}>{p.specs}</p>
+                    <a
+                      href="https://wa.me/5563930002112"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-outfit text-[0.85rem] text-primary mt-3 inline-block hover:text-gold transition-colors"
+                    >
+                      Ver mais →
+                    </a>
+                  </div>
 
-                <div className="relative z-10">
-                  <h3 className="font-outfit font-semibold text-foreground text-[1.1rem] mb-1">{p.name}</h3>
-                  <p className="font-dm-mono text-[0.7rem]" style={{ color: "hsl(var(--white-40))" }}>{p.specs}</p>
-                  <a
-                    href="https://wa.me/5563930002112"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-outfit text-[0.85rem] text-primary mt-3 inline-block"
-                  >
-                    Ver mais →
-                  </a>
+                  <div className="relative w-24 h-24 flex-shrink-0 flex items-center justify-center">
+                    <img 
+                      src={`/jbl-${p.name.toLowerCase().replace(/\s+/g, '-')}.png`}
+                      alt={p.name}
+                      className="w-full h-full object-contain relative z-10 drop-shadow-lg scale-125 transition-transform duration-500 group-hover:scale-150"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        if (e.currentTarget.nextElementSibling) {
+                          (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'block';
+                        }
+                      }}
+                    />
+                    {/* Sound wave bg art (shown as fallback or decoration) */}
+                    <svg className="absolute opacity-[0.08] text-primary group-hover:opacity-20 transition-opacity" width="80" height="80" viewBox="0 0 120 120" fill="none">
+                      <circle cx="60" cy="60" r="20" stroke="currentColor" strokeWidth="0.8" />
+                      <circle cx="60" cy="60" r="36" stroke="currentColor" strokeWidth="0.5" />
+                    </svg>
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

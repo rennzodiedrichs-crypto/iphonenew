@@ -1,4 +1,15 @@
+import { useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import QuickViewModal from "./QuickViewModal";
+
+interface Product {
+  name: string;
+  badge: string;
+  specs: string;
+  model: string;
+  highlight?: string;
+  image?: string;
+}
 
 const iphones = [
   { name: "iPhone 16 Pro Max", badge: "NOVO", specs: "256GB · Titânio Deserto · Dynamic Island", model: "16PM", highlight: "🔥 Mais Vendido" },
@@ -13,6 +24,13 @@ const iphones = [
 
 const IPhoneShowcase = () => {
   const ref = useScrollReveal();
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openQuickView = (product: Product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
 
   return (
     <section id="celulares" ref={ref} className="py-24 relative overflow-hidden" style={{ background: "hsl(var(--void))" }}>
@@ -81,20 +99,35 @@ const IPhoneShowcase = () => {
                   </span>
                   <h3 className="font-outfit font-semibold text-[1.15rem] text-foreground mb-1">{p.name}</h3>
                   <p className="font-dm-mono text-[0.7rem] mb-4" style={{ color: "hsl(var(--white-40))" }}>{p.specs}</p>
-                  <a
-                    href={`https://wa.me/5563930002112?text=${waText}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-outfit text-[0.85rem] text-primary relative inline-block group/link"
-                  >
-                    Ver detalhes →
-                    <span className="absolute bottom-0 left-0 w-full h-px bg-primary origin-left scale-x-0 group-hover/link:scale-x-100 transition-transform duration-300" />
-                  </a>
+                  <div className="flex items-center justify-between mt-4">
+                    <a
+                      href={`https://wa.me/5563930002112?text=${waText}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-outfit text-[0.85rem] text-primary relative inline-block group/link"
+                    >
+                      Ver detalhes →
+                      <span className="absolute bottom-0 left-0 w-full h-px bg-primary origin-left scale-x-0 group-hover/link:scale-x-100 transition-transform duration-300" />
+                    </a>
+                    
+                    <button
+                      onClick={() => openQuickView(p)}
+                      className="text-[0.7rem] uppercase tracking-widest text-white/40 hover:text-gold transition-colors"
+                    >
+                      Quick View
+                    </button>
+                  </div>
                 </div>
               </div>
             );
           })}
         </div>
+
+        <QuickViewModal 
+          product={selectedProduct} 
+          isOpen={isModalOpen} 
+          onClose={() => setIsModalOpen(false)} 
+        />
 
         <div className="text-center mt-12">
           <a

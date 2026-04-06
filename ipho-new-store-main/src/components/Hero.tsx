@@ -1,7 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const Hero = () => {
   const [loaded, setLoaded] = useState(false);
+  const containerRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   useEffect(() => { setLoaded(true); }, []);
 
   const anim = (delay: number) =>
@@ -12,17 +24,22 @@ const Hero = () => {
   return (
     <section
       id="inicio"
+      ref={containerRef}
       className="relative w-full overflow-hidden noise-overlay"
       style={{ minHeight: "100svh", background: "hsl(var(--void))" }}
     >
-      {/* Atmospheric layers */}
-      <div className="absolute inset-0" style={{
-        background: `
-          radial-gradient(ellipse 70% 60% at 20% 80%, rgba(245,168,0,0.07) 0%, transparent 55%),
-          radial-gradient(ellipse 50% 45% at 80% 10%, rgba(255,255,255,0.025) 0%, transparent 45%),
-          repeating-linear-gradient(135deg, transparent, transparent 40px, rgba(255,255,255,0.012) 40px, rgba(255,255,255,0.012) 41px)
-        `,
-      }} />
+      <motion.div 
+        className="absolute inset-0" 
+        style={{
+          y: y1,
+          opacity,
+          background: `
+            radial-gradient(ellipse 70% 60% at 20% 80%, rgba(245,168,0,0.07) 0%, transparent 55%),
+            radial-gradient(ellipse 50% 45% at 80% 10%, rgba(255,255,255,0.025) 0%, transparent 45%),
+            repeating-linear-gradient(135deg, transparent, transparent 40px, rgba(255,255,255,0.012) 40px, rgba(255,255,255,0.012) 41px)
+          `,
+        }} 
+      />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-5 lg:px-8 flex items-center min-h-[100svh]">
@@ -85,24 +102,47 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right column — geometric composition */}
-          <div
+          <motion.div
             className="hidden lg:flex flex-1 justify-center items-center"
-            style={anim(1100)}
+            style={{ ...anim(1100), y: y2 }}
           >
-            <div className="animate-float relative w-[360px] h-[400px]">
-              {/* Glow orb */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full blur-[40px]" style={{ background: "hsl(var(--gold) / 0.15)" }} />
-              {/* Outer rectangle */}
-              <div className="absolute top-8 left-8 right-8 bottom-8 rounded-lg border-2 rotate-[12deg]" style={{ borderColor: "hsl(var(--gold) / 0.2)" }} />
-              {/* Inner rectangle */}
-              <div className="absolute top-16 left-16 right-16 bottom-16 rounded-md border rotate-[-4deg]" style={{ borderColor: "hsl(var(--white-10))" }} />
-              {/* Horizontal lines */}
-              <div className="absolute top-[30%] left-0 right-0 h-px" style={{ background: "hsl(var(--white-10))" }} />
-              <div className="absolute top-[50%] left-0 right-0 h-px" style={{ background: "hsl(var(--white-05))" }} />
-              <div className="absolute top-[70%] left-0 right-0 h-px" style={{ background: "hsl(var(--white-10))" }} />
+            <div className="animate-float relative w-[450px] h-[550px] flex items-center justify-center">
+              {/* Main product image placeholder */}
+              <div className="relative z-20 w-full h-full flex items-center justify-center p-8">
+                <img 
+                  src="/hero-iphone.png" 
+                  alt="iPhone 16 Pro Max"
+                  className="max-w-full max-h-full object-contain drop-shadow-[0_35px_60px_rgba(0,0,0,0.6)]"
+                  onError={(e) => {
+                    // Fallback to the geometric composition if image doesn't exist yet
+                    e.currentTarget.style.display = 'none';
+                    if (e.currentTarget.nextElementSibling) {
+                      (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'block';
+                    }
+                  }}
+                />
+                
+                {/* Fallback geometric composition (shown if image fails) */}
+                <div className="hidden relative w-[360px] h-[400px]">
+                  {/* Glow orb */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full blur-[40px]" style={{ background: "hsl(var(--gold) / 0.15)" }} />
+                  {/* Outer rectangle */}
+                  <div className="absolute top-8 left-8 right-8 bottom-8 rounded-lg border-2 rotate-[12deg]" style={{ borderColor: "hsl(var(--gold) / 0.2)" }} />
+                  {/* Inner rectangle */}
+                  <div className="absolute top-16 left-16 right-16 bottom-16 rounded-md border rotate-[-4deg]" style={{ borderColor: "hsl(var(--white-10))" }} />
+                  {/* Horizontal lines */}
+                  <div className="absolute top-[30%] left-0 right-0 h-px" style={{ background: "hsl(var(--white-10))" }} />
+                  <div className="absolute top-[50%] left-0 right-0 h-px" style={{ background: "hsl(var(--white-05))" }} />
+                  <div className="absolute top-[70%] left-0 right-0 h-px" style={{ background: "hsl(var(--white-10))" }} />
+                </div>
+              </div>
+
+              {/* Decorative elements */}
+              <div className="absolute inset-0 z-10">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full blur-[80px]" style={{ background: "hsl(var(--gold) / 0.2)" }} />
+              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

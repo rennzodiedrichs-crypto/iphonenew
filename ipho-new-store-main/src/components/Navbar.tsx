@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { motion, useScroll, useSpring } from "framer-motion";
 
 const navLinks = [
   { label: "Início", href: "#inicio" },
@@ -13,6 +14,13 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
@@ -24,12 +32,16 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 animate-slide-down"
       style={{
         height: 68,
-        background: "rgba(7,7,7,0.90)",
-        backdropFilter: "blur(32px)",
+        background: scrolled ? "rgba(7,7,7,0.85)" : "transparent",
+        backdropFilter: scrolled ? "blur(20px)" : "none",
         borderBottom: scrolled ? "1px solid hsl(var(--border))" : "1px solid transparent",
-        transition: "border-color 0.3s",
+        transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
       }}
     >
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-[2px] bg-primary origin-left z-[51]"
+        style={{ scaleX }}
+      />
       <div className="container mx-auto h-full flex items-center justify-between px-5 lg:px-8">
         {/* Logo */}
         <a href="#inicio" className="flex items-center gap-0">
